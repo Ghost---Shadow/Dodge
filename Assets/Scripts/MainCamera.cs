@@ -51,7 +51,8 @@ public class MainCamera : MonoBehaviour
             if (Player != null)
             {
                 Vector3 PlayerPos = Player.transform.position;
-                transform.position = new Vector3(PlayerPos.x, transform.position.y, PlayerPos.z - 4.5f);
+                Debug.Log("Player Pos: " + PlayerPos);
+                transform.position = new Vector3(PlayerPos.x, PlayerPos.y, -10);
             }
         }
     }
