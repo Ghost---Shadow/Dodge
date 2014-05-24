@@ -9,7 +9,8 @@ public class MainCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        Vector2 PlayerPos = GameObject.Find("Player").transform.position;
+        transform.position = new Vector3(PlayerPos.x, PlayerPos.y, transform.position.z);
     }
 
     // Update is called once per frame
@@ -51,7 +52,6 @@ public class MainCamera : MonoBehaviour
             if (Player != null)
             {
                 Vector3 PlayerPos = Player.transform.position;
-                Debug.Log("Player Pos: " + PlayerPos);
                 transform.position = new Vector3(PlayerPos.x, PlayerPos.y, -10);
             }
         }
