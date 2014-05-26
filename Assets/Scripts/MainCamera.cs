@@ -62,7 +62,10 @@ public class MainCamera : MonoBehaviour
             Input.mousePosition.y <= EdgeBuffer &&
             Input.mousePosition.y >= 0)
             transform.position += Vector3.down * Time.deltaTime * Speed;
+    }
 
+    void LateUpdate()
+    {
         // Center on player
         if (Input.GetButton("Jump"))
         {
