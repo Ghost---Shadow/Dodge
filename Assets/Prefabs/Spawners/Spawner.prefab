@@ -40,8 +40,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mob: {fileID: 100000, guid: 09e55ea5ab186ed498ca1347b65f5498, type: 2}
   SpawnTimer: .5
-  SpawnCount: 205
-  Continuous: 1
+  SpawnCount: 50
+  Continuous: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
