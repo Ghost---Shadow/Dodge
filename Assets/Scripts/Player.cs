@@ -33,18 +33,17 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "SafeZone")
-        {
-            Debug.Log("Safe!");
             isSafe = true;
+        
+        if (other.gameObject.name == "SafeZone Top")
+        {
+            Debug.Log("You Win!");
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "SafeZone")
-        {
-            Debug.Log("No longer safe!");
             isSafe = false;
-        }
     }
 }
