@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public float Speed = 4;     // Move speed
-    public float WaitTime = 3;  // Time to wait before changing direction
+    public float Speed = 4;             // Move speed
+    public float WaitTime = 3;          // Time to wait before changing direction
+    public float WanderRadius = 30;     // The radius in which the creature is bound
 
     // Bounds to stay within
     private float minX;
@@ -18,6 +19,10 @@ public class Enemy : MonoBehaviour
     // Time to change destination
     private float nextMoveTime;
 
+    // Level bounds
+    Vector2 lowerBounds;
+    Vector2 upperBounds;
+
     // Use this for initialization
     void Start()
     {
@@ -27,27 +32,37 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Background not found!");
 
         // Set bounds based on the background renderer
-        minX = background.renderer.bounds.min.x;
-        minY = background.renderer.bounds.min.y;
-        maxX = background.renderer.bounds.max.x;
-        maxY = background.renderer.bounds.max.y;
+        minX = transform.position.x - WanderRadius;
+        minY = transform.position.y - WanderRadius;
+        maxX = transform.position.x + WanderRadius;
+        maxY = transform.position.y + WanderRadius;
+
+        // Find the lower and upper bounds of the map
+        lowerBounds = new Vector2(background.renderer.bounds.min.x, background.renderer.bounds.min.y);
+        upperBounds = new Vector2(background.renderer.bounds.max.x, background.renderer.bounds.max.y);
     }
 
     void FixedUpdate()
+    {
+        SetDestination();
+        transform.position = Vector2.MoveTowards(transform.position, destination, Speed);
+    }
+
+    void SetDestination()
     {
         // Move to a random location every X seconds
         if (Time.time >= nextMoveTime)
         {
             nextMoveTime += WaitTime;
-            destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+            float x = Mathf.Clamp(Random.Range(minX, maxX), lowerBounds.x, upperBounds.x);
+            float y = Mathf.Clamp(Random.Range(minY, maxY), lowerBounds.y, upperBounds.y);
+            destination = new Vector2(x, y);
         }
-
-        transform.position = Vector2.MoveTowards(transform.position, destination, Speed);
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Enemy")
-            destination = destination * -1;
+            SetDestination();
     }
 }
