@@ -36,8 +36,7 @@ public class Enemy : MonoBehaviour
         destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Move to a random location every X seconds
         if (Time.time >= nextMoveTime)
@@ -47,5 +46,11 @@ public class Enemy : MonoBehaviour
         }
 
         transform.position = Vector2.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+            destination = destination * -1;
     }
 }

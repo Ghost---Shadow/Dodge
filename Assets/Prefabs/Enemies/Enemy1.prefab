@@ -10,11 +10,11 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
-  - 68: {fileID: 6800000}
   - 114: {fileID: 11400000}
+  - 60: {fileID: 6000000}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.00370789, y: -36.190506, z: 0}
+  m_LocalPosition: {x: -1.82758057, y: -30.6630096, z: 0}
   m_LocalScale: {x: 1, y: .997423351, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40,13 +40,13 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!68 &6800000
-EdgeCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,18 +54,18 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Points:
-  - {x: -.00189399719, y: .28799057}
-  - {x: -.0695660114, y: .0695533752}
-  - {x: -.300721228, y: .0695724487}
-  - {x: -.117621779, y: -.0720596313}
-  - {x: -.185734034, y: -.289549142}
-  - {x: -.00104731321, y: -.152812958}
-  - {x: .189539909, y: -.289644778}
-  - {x: .112302065, y: -.0697860718}
-  - {x: .303687215, y: .0705476776}
-  - {x: .0741930008, y: .0712394714}
-  - {x: .000424623489, y: .289455414}
+  m_Poly:
+    m_Paths:
+    - - {x: .293620944, y: .066979371}
+      - {x: .0719505548, y: .0702034682}
+      - {x: -.00129437447, y: .284999847}
+      - {x: -.0692682266, y: .0662202016}
+      - {x: -.301594853, y: .0685780346}
+      - {x: -.116510153, y: -.0686048046}
+      - {x: -.184483886, y: -.284999847}
+      - {x: .000731706619, y: -.157439575}
+      - {x: .182457685, y: -.280987889}
+      - {x: .119399428, y: -.0698822066}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e151755ebee7b429ad8a16a690e252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 4
+  WaitTime: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
