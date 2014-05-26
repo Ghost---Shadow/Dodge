@@ -252,10 +252,6 @@ Prefab:
       propertyPath: m_Name
       value: SafeZone Top
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e94716832a1575d49905789a3d19e55b, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 200
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e94716832a1575d49905789a3d19e55b, type: 2}
   m_RootGameObject: {fileID: 1003587134}
@@ -314,6 +310,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 436905606}
   - 212: {fileID: 436905605}
+  - 61: {fileID: 436905607}
   m_Layer: 0
   m_Name: SafeZone Middle
   m_TagString: Untagged
@@ -356,6 +353,18 @@ Transform:
   m_LocalScale: {x: 12800, y: 200, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!61 &436905607
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6100000, guid: e94716832a1575d49905789a3d19e55b,
+    type: 2}
+  m_PrefabInternal: {fileID: 734611927}
+  m_GameObject: {fileID: 436905604}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .00999999978, y: .00999999978}
+  m_Center: {x: 0, y: 0}
 --- !u!1001 &570456923
 Prefab:
   m_ObjectHideFlags: 0
@@ -527,10 +536,6 @@ Prefab:
       propertyPath: m_Name
       value: SafeZone Middle
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e94716832a1575d49905789a3d19e55b, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 200
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e94716832a1575d49905789a3d19e55b, type: 2}
   m_RootGameObject: {fileID: 436905604}
@@ -545,6 +550,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1003587136}
   - 212: {fileID: 1003587135}
+  - 61: {fileID: 1003587137}
   m_Layer: 0
   m_Name: SafeZone Top
   m_TagString: Untagged
@@ -587,6 +593,18 @@ Transform:
   m_LocalScale: {x: 12800, y: 200, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!61 &1003587137
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6100000, guid: e94716832a1575d49905789a3d19e55b,
+    type: 2}
+  m_PrefabInternal: {fileID: 274081165}
+  m_GameObject: {fileID: 1003587134}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .00999999978, y: .00999999978}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &1103511517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1027,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2079118309}
   - 212: {fileID: 2079118308}
+  - 61: {fileID: 2079118310}
   m_Layer: 0
   m_Name: SafeZone Bottom
   m_TagString: Untagged
@@ -1051,3 +1070,15 @@ Transform:
   m_LocalScale: {x: 12800, y: 200, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!61 &2079118310
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6100000, guid: e94716832a1575d49905789a3d19e55b,
+    type: 2}
+  m_PrefabInternal: {fileID: 678157741}
+  m_GameObject: {fileID: 2079118307}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .00999999978, y: .00999999978}
+  m_Center: {x: 0, y: 0}

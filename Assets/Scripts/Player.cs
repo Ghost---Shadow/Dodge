@@ -22,4 +22,10 @@ public class Player : MonoBehaviour
         }
         transform.position = Vector3.MoveTowards(transform.position, target, Speed * Time.deltaTime);
     }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+            Application.LoadLevel(0);
+    }
 }
