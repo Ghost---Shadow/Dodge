@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
             destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         }
 
-        transform.position = Vector2.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, destination, Speed);
     }
 
     void OnCollisionEnter2D(Collision2D col)
