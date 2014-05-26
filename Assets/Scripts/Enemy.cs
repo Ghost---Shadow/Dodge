@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Move to a random location every X seconds
         if (Time.time >= nextMoveTime)
         {
             nextMoveTime += WaitTime;
