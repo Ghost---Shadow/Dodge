@@ -12,9 +12,6 @@ public class Enemy : MonoBehaviour
     private float maxX;
     private float maxY;
 
-    // Time to change destination
-    private float nextMoveTime;
-
     // Random destination to move towards
     private Vector3 destination;
 
@@ -32,20 +29,18 @@ public class Enemy : MonoBehaviour
         maxX = background.renderer.bounds.max.x;
         maxY = background.renderer.bounds.max.y;
 
-        // Choose an initial random destination
-        destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        // Move to a random location every X seconds
+        InvokeRepeating("MoveRandom", 0, WaitTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Move to a random location every X seconds
-        if (Time.time >= nextMoveTime)
-        {
-            nextMoveTime += WaitTime;
-            destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        }
-
         transform.position = Vector2.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
+    }
+
+    void MoveRandom()
+    {
+        destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
 }
