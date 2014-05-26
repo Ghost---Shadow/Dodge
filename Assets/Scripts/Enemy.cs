@@ -42,10 +42,10 @@ public class Enemy : MonoBehaviour
         upperBounds = new Vector2(background.renderer.bounds.max.x, background.renderer.bounds.max.y);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         SetDestination();
-        transform.position = Vector2.MoveTowards(transform.position, destination, Speed);
+        transform.position = Vector2.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
     }
 
     void SetDestination()

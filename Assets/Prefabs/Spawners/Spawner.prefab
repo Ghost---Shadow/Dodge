@@ -41,7 +41,7 @@ MonoBehaviour:
   Mob: {fileID: 100000, guid: 09e55ea5ab186ed498ca1347b65f5498, type: 2}
   SpawnTimer: .100000001
   SpawnCount: 50
-  Continuous: 0
+  Continuous: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
