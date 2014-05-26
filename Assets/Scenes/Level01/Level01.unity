@@ -205,6 +205,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 2f63b1d52f1df7c49a9437cbe9c1a0b3, type: 2}
+      propertyPath: Speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f63b1d52f1df7c49a9437cbe9c1a0b3, type: 2}
   m_RootGameObject: {fileID: 1329187334}
@@ -488,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9665efb6e4c6014d9468b83ad0da2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 8
+  Speed: 3
 --- !u!1 &1678992349
 GameObject:
   m_ObjectHideFlags: 0
