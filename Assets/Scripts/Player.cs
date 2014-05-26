@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     public float Speed = 8f;
     Vector3 target;
+    bool isSafe = true;
 
     // Use this for initialization
     void Start()
@@ -25,7 +26,25 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy" && !isSafe)
             Application.LoadLevel(0);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "SafeZone")
+        {
+            Debug.Log("Safe!");
+            isSafe = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "SafeZone")
+        {
+            Debug.Log("No longer safe!");
+            isSafe = false;
+        }
     }
 }
