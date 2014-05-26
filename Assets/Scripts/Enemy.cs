@@ -15,21 +15,25 @@ public class Enemy : MonoBehaviour
     // Time to change destination
     private float nextMoveTime;
 
-    // 
+    // Random destination to move towards
     private Vector3 destination;
 
     // Use this for initialization
     void Start()
     {
+        // Find the background to use for bounds
         GameObject background = GameObject.Find("Background");
         if (!background)
             Debug.LogError("Background not found!");
 
+        // Set bounds based on the background renderer
         minX = background.renderer.bounds.min.x;
         minY = background.renderer.bounds.min.y;
         maxX = background.renderer.bounds.max.x;
         maxY = background.renderer.bounds.max.y;
-        destination = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), transform.position.z);
+
+        // Choose an initial random destination
+        destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
 
     // Update is called once per frame
@@ -37,11 +41,10 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time >= nextMoveTime)
         {
-            Debug.Log(nextMoveTime);
             nextMoveTime += WaitTime;
-            destination = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), transform.position.z);
+            destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
     }
 }
