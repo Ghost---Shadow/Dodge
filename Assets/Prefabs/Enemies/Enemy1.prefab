@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
-  - 60: {fileID: 6000000}
+  - 58: {fileID: 5800000}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.82758057, y: -30.6630096, z: 0}
+  m_LocalPosition: {x: 13.056632, y: -13.8040333, z: 0}
   m_LocalScale: {x: 1, y: .997423351, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,8 +45,8 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!60 &6000000
-PolygonCollider2D:
+--- !u!58 &5800000
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,18 +54,8 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Poly:
-    m_Paths:
-    - - {x: .293620944, y: .066979371}
-      - {x: .0719505548, y: .0702034682}
-      - {x: -.00129437447, y: .284999847}
-      - {x: -.0692682266, y: .0662202016}
-      - {x: -.301594853, y: .0685780346}
-      - {x: -.116510153, y: -.0686048046}
-      - {x: -.184483886, y: -.284999847}
-      - {x: .000731706619, y: -.157439575}
-      - {x: .182457685, y: -.280987889}
-      - {x: .119399428, y: -.0698822066}
+  m_Radius: .0700000003
+  m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,7 +91,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortingLayerID: 4034012365
-  m_Sprite: {fileID: 21300000, guid: 2efbb6432be686f4ba25cd912ac0b444, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e618c67fed2e9134bba859e7e6545d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
