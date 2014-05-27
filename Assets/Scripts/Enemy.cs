@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private float maxY;
 
     // Random destination to move towards
-    private Vector3 destination;
+    private Vector2 destination;
 
     // Time to change destination
     private float nextMoveTime;
