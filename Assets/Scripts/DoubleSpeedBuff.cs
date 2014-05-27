@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy1Buff : MonoBehaviour
+public class DoubleSpeedBuff : MonoBehaviour
 {
-    public Sprite sprite;
+    public Sprite buffSprite;
+    public int buffChance = 2;  // The lower the number the greater the chance
 
     Enemy enemy;
     float originalSpeed;
@@ -14,6 +15,7 @@ public class Enemy1Buff : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        buffChance = 2;
         enemy = (Enemy)gameObject.GetComponent(typeof(Enemy));
         originalSpeed = enemy.Speed;
 
@@ -26,12 +28,12 @@ public class Enemy1Buff : MonoBehaviour
     {
         if (Time.time >= nextMoveTime)
         {
-            nextMoveTime += enemy.WaitTime; 
-            int buffChance = Random.Range(0, 2);
-            if (buffChance == 0)
+            nextMoveTime += enemy.WaitTime;
+            int chance = Random.Range(0, buffChance);
+            if (chance == 0)
             {
                 enemy.Speed = originalSpeed * 2.0f;
-                spriteRenderer.sprite = sprite;
+                spriteRenderer.sprite = buffSprite;
             }
             else
             {
