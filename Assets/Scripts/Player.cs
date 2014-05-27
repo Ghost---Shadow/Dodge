@@ -27,7 +27,10 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Enemy" && !isSafe)
-            Application.LoadLevel(0);
+        {
+            Dead();
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -45,5 +48,10 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "SafeZone")
             isSafe = false;
+    }
+
+    void Dead()
+    {
+        DeathScript.IncrementDeath();
     }
 }
