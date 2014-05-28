@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Buffable
 {
-    public float Speed = 4;             // Move speed
+    public float MoveSpeed = 4;             // Move speed
     public float WaitTime = 3;          // Time to wait before changing direction
     public float WanderRadius = 30;     // The radius in which the creature is bound
 
@@ -22,6 +22,42 @@ public class Enemy : MonoBehaviour
     // Level bounds
     Vector2 lowerBounds;
     Vector2 upperBounds;
+
+    public override Vector2 Destination
+    {
+        get
+        {
+            return destination;
+        }
+        set
+        {
+            destination = value;
+        }
+    }
+
+    public override Sprite StartSprite
+    {
+        get
+        {
+            return ((SpriteRenderer)GetComponent(typeof(SpriteRenderer))).sprite;
+        }
+        set
+        {
+            ((SpriteRenderer)GetComponent(typeof(SpriteRenderer))).sprite = value;
+        }
+    }
+
+    public override float Speed
+    {
+        get
+        {
+            return MoveSpeed;
+        }
+        set
+        {
+            MoveSpeed = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -45,7 +81,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         SetDestination();
-        transform.position = Vector2.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
     }
 
     void SetDestination()
