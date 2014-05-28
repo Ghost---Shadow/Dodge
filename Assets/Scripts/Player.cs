@@ -1,11 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour
+public class Player : Buffable
 {
-    public float Speed = 8f;
+    public float MoveSpeed = 8f;
     Vector3 target;
     bool isSafe = true;
+
+    public override Vector2 Destination
+    {
+        get
+        {
+            return target;
+        }
+        set
+        {
+            target = value;
+        }
+    }
+
+    public override Sprite StartSprite
+    {
+        get
+        {
+            return ((SpriteRenderer)GetComponent(typeof(SpriteRenderer))).sprite;
+        }
+        set
+        {
+            ((SpriteRenderer)GetComponent(typeof(SpriteRenderer))).sprite = value;
+        }
+    }
+
+    public override float Speed
+    {
+        get
+        {
+            return MoveSpeed;
+        }
+        set
+        {
+            MoveSpeed = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -21,7 +57,7 @@ public class Player : MonoBehaviour
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             target.z = transform.position.z;
         }
-        transform.position = Vector3.MoveTowards(transform.position, target, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target, MoveSpeed * Time.deltaTime);
     }
 
     void OnCollisionEnter2D(Collision2D col)
