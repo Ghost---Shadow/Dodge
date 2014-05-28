@@ -6,18 +6,18 @@ public class HalfSpeedBuff : Buff
     public Sprite buffSprite;
 
     SpriteRenderer spriteRenderer;
-    Enemy enemy;
+    Buffable buffable;
 
     // Use this for initialization
     void Start()
     {
-        enemy = (Enemy)gameObject.GetComponent(typeof(Enemy));
+        buffable = (Buffable)gameObject.GetComponent(typeof(Buffable));
         spriteRenderer = (SpriteRenderer)gameObject.GetComponent(typeof(SpriteRenderer));
     }
 
     public override void ApplyBuff()
     {
-        enemy.Speed *= 0.5f;
+        buffable.Speed *= 0.5f;
         spriteRenderer.sprite = buffSprite;
     }
 
