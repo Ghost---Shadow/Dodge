@@ -36,8 +36,12 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "SafeZone")
+        {
+            SafeZone safeZone = (SafeZone)other.gameObject.GetComponent(typeof(SafeZone));
+            safeZone.Left();
             isSafe = true;
-        
+        }
+
         if (other.gameObject.name == "SafeZone Top")
         {
             Application.LoadLevel(Application.loadedLevel);
@@ -47,7 +51,11 @@ public class Player : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "SafeZone")
+        {
+            SafeZone safeZone = (SafeZone)other.gameObject.GetComponent(typeof(SafeZone));
+            safeZone.Entered();
             isSafe = false;
+        }
     }
 
     void Dead()

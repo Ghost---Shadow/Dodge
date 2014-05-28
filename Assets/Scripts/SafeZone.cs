@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Sprite))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class SafeZone : MonoBehaviour
 {
+    public Sprite EnteredTexture;
+    public Sprite LeftTexture;
 
-    // Use this for initialization
+    SpriteRenderer spriteRenderer;
+
     void Start()
     {
-
+        spriteRenderer = (SpriteRenderer)GetComponent(typeof(SpriteRenderer));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Entered()
     {
-
+        spriteRenderer.sprite = EnteredTexture;
     }
 
-    void OnTriggerEnter(Collider other)
+    public void Left()
     {
-        Debug.Log("Trigger!");
+        spriteRenderer.sprite = LeftTexture;
     }
 }
