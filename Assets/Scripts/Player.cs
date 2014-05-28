@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         
         if (other.gameObject.name == "SafeZone Top")
         {
-            Debug.Log("You Win!");
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
