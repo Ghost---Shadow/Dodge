@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Buffable))]
 public class BuffManager : MonoBehaviour
 {
     public float BuffDuration = 3;
