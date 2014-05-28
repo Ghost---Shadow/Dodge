@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87e5340ca37cd6419dc568c1342bddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BannerTexture: {fileID: 2800000, guid: 512cbfd2315a2cd47af18d80c8048814, type: 3}
   PlayTexture: {fileID: 2800000, guid: 24a0dfd1f684a1748b505064f2e256d8, type: 3}
   OptionsTexture: {fileID: 2800000, guid: 4d05874632e946b46b2f6d61a4465ad0, type: 3}
   QuitTexture: {fileID: 2800000, guid: 593bc4ce6ae74c54ab5e8d7c18b6b87b, type: 3}
