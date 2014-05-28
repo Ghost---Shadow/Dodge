@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "SafeZone")
         {
             SafeZone safeZone = (SafeZone)other.gameObject.GetComponent(typeof(SafeZone));
-            safeZone.Left();
+            safeZone.Entered();
             isSafe = true;
         }
 
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "SafeZone")
         {
             SafeZone safeZone = (SafeZone)other.gameObject.GetComponent(typeof(SafeZone));
-            safeZone.Entered();
+            safeZone.Left();
             isSafe = false;
         }
     }
