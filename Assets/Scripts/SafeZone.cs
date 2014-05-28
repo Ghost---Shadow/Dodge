@@ -5,23 +5,24 @@ using System.Collections;
 [RequireComponent(typeof(SpriteRenderer))]
 public class SafeZone : MonoBehaviour
 {
-    public Sprite EnteredTexture;
-    public Sprite LeftTexture;
+    public Sprite EnteredSprite;
 
+    Sprite defaultSprite;
     SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteRenderer = (SpriteRenderer)GetComponent(typeof(SpriteRenderer));
+        defaultSprite = spriteRenderer.sprite;
     }
 
     public void Entered()
     {
-        spriteRenderer.sprite = EnteredTexture;
+        spriteRenderer.sprite = EnteredSprite;
     }
 
     public void Left()
     {
-        spriteRenderer.sprite = LeftTexture;
+        spriteRenderer.sprite = defaultSprite;
     }
 }
