@@ -32,7 +32,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!58 &5800000
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -55,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e151755ebee7b429ad8a16a690e252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  MoveSpeed: 3
   WaitTime: 5
   WanderRadius: 30
 --- !u!114 &11400002
@@ -112,8 +111,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 4034012365
+  m_SortingLayer: 3
   m_SortingOrder: 0
+  m_SortingLayerID: 4034012365
   m_Sprite: {fileID: 21300000, guid: e618c67fed2e9134bba859e7e6545d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
