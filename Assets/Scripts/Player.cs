@@ -6,6 +6,8 @@ public class Player : Buffable
     public float MoveSpeed = 8f;
     Vector3 target;
     bool isSafe = true;
+    Vector2 upperBounds;
+    Vector2 lowerBounds;
 
     public override Vector2 Destination
     {
@@ -47,6 +49,13 @@ public class Player : Buffable
     void Start()
     {
         target = transform.position;
+
+        GameObject background = GameObject.Find("Background");
+        if (!background)
+            Debug.LogError("Background could not be found.");
+
+        upperBounds = background.renderer.bounds.max;
+        lowerBounds = background.renderer.bounds.min;
     }
 
     // Update is called once per frame
@@ -58,6 +67,20 @@ public class Player : Buffable
             target.z = transform.position.z;
         }
         transform.position = Vector3.MoveTowards(transform.position, target, MoveSpeed * Time.deltaTime);
+    }
+
+    void LateUpdate()
+    {
+        // Keep player on the map
+        if (transform.position.x > upperBounds.x)
+            transform.position = new Vector2(upperBounds.x, transform.position.y);
+        else if (transform.position.x < lowerBounds.x)
+            transform.position = new Vector2(lowerBounds.x, transform.position.y);
+
+        if (transform.position.y > upperBounds.y)
+            transform.position = new Vector2(transform.position.x, upperBounds.y);
+        else if (transform.position.y < lowerBounds.y)
+            transform.position = new Vector2(transform.position.x, lowerBounds.y);
     }
 
     void OnCollisionEnter2D(Collision2D col)
