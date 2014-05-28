@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : Buffable
 {
     public float MoveSpeed = 8f;
-    Vector3 target;
+    Vector2 target;
     bool isSafe = true;
     Vector2 upperBounds;
     Vector2 lowerBounds;
@@ -62,11 +62,16 @@ public class Player : Buffable
     void Update()
     {
         if (Input.GetButton("Fire2"))
-        {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = transform.position.z;
+        else
+        {
+            if (Input.GetAxis("Vertical") >= 0.2 || Input.GetAxis("Vertical") <= -0.2)
+                target.y = Input.GetAxis("Vertical") * .2f + transform.position.y;
+            if (Input.GetAxis("Horizontal") >= 0.2 || Input.GetAxis("Horizontal") <= -0.2)
+                target.x = Input.GetAxis("Horizontal") * .2f + transform.position.x;
         }
-        transform.position = Vector3.MoveTowards(transform.position, target, MoveSpeed * Time.deltaTime);
+
+        transform.position = Vector2.MoveTowards(transform.position, target, MoveSpeed * Time.deltaTime);
     }
 
     void LateUpdate()
