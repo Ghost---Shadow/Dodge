@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoubleSpeedBuff : Buff
+public class HalfSpeedBuff : Buff
 {
     public Sprite buffSprite;
 
@@ -17,15 +17,12 @@ public class DoubleSpeedBuff : Buff
 
     public override void ApplyBuff()
     {
-        enemy.Speed *= 2.0f;
+        enemy.Speed *= 0.5f;
         spriteRenderer.sprite = buffSprite;
     }
 
     public override string BuffName
     {
-        get 
-        {
-            return "Double Speed";
-        }
+        get { return "Half Speed"; }
     }
 }

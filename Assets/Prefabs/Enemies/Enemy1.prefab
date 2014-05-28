@@ -12,6 +12,8 @@ GameObject:
   - 114: {fileID: 11400000}
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -30,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!58 &5800000
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -67,7 +70,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffSprite: {fileID: 21300000, guid: 01863acbd9e83b14290c768e7c7c0157, type: 3}
-  buffChance: 2
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202f47c5fc403804b8dbb3d43b39b542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffSprite: {fileID: 21300000, guid: 7a59df37545ca05419ad81239c84739e, type: 3}
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288d7e4f86ad0904aa0a9ab4b436a5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuffDuration: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -86,9 +112,8 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 3
-  m_SortingOrder: 0
   m_SortingLayerID: 4034012365
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e618c67fed2e9134bba859e7e6545d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
