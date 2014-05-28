@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Buffable))]
 public class BuffManager : MonoBehaviour
 {
     public float BuffDuration = 3;
-
-    Component[] buffList;
+    List<Component> buffList;
     SpriteRenderer spriteRenderer;
     Sprite originalSprite;
     Buffable buffable;
@@ -18,8 +18,7 @@ public class BuffManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        buffList = GetComponents(typeof(Buff));
-
+        buffList = new List<Component>(GetComponents(typeof(Buff)));
         buffable = (Buffable)GetComponent(typeof(Buffable));
         originalSpeed = buffable.Speed;
 
@@ -31,12 +30,12 @@ public class BuffManager : MonoBehaviour
     {
         if (Time.time >= nextBuffTime)
         {
-            int rand = Random.Range(0, buffList.Length + 5);
+            int rand = Random.Range(0, buffList.Count + 5);
             Buff b;
 
             RemoveBuff();
 
-            if (rand < buffList.Length)
+            if (rand < buffList.Count)
             {
                 b = (Buff)buffList[rand];
                 b.ApplyBuff();
