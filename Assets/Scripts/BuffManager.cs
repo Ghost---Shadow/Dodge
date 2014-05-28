@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(Enemy))]
 public class BuffManager : MonoBehaviour
 {
     public float BuffDuration = 3;
@@ -10,7 +9,7 @@ public class BuffManager : MonoBehaviour
     Component[] buffList;
     SpriteRenderer spriteRenderer;
     Sprite originalSprite;
-    Enemy enemy;
+    Buffable buffable;
     float originalSpeed;
     float originalWanderRadius;
     float nextBuffTime;
@@ -20,9 +19,8 @@ public class BuffManager : MonoBehaviour
     {
         buffList = GetComponents(typeof(Buff));
 
-        enemy = (Enemy)GetComponent(typeof(Enemy));
-        originalSpeed = enemy.Speed;
-        originalWanderRadius = enemy.WanderRadius;
+        buffable = (Buffable)GetComponent(typeof(Buffable));
+        originalSpeed = buffable.Speed;
 
         spriteRenderer = (SpriteRenderer)GetComponent(typeof(SpriteRenderer));
         originalSprite = spriteRenderer.sprite;
@@ -49,8 +47,7 @@ public class BuffManager : MonoBehaviour
 
     void RemoveBuff()
     {
-        enemy.Speed = originalSpeed;
-        enemy.WanderRadius = originalWanderRadius;
+        buffable.Speed = originalSpeed;
         spriteRenderer.sprite = originalSprite;
     }
 }
