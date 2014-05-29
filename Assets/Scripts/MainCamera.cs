@@ -4,7 +4,7 @@ using System.Collections;
 public class MainCamera : MonoBehaviour
 {
     public float EdgeBuffer = 70f;  // The border width at the screen edge in which the movement will work
-    public float Speed = 15f;       // Speed of the camera movement                               
+    public float Speed = 15f;       // Speed of the camera movement
 
     float width;
     float height;
@@ -31,7 +31,7 @@ public class MainCamera : MonoBehaviour
             Debug.LogError("Background could not be found!");
 
         player = GameObject.Find("Player");
-        toggleCam = false;
+        toggleCam = true;
     }
 
     // Update is called once per frame
@@ -94,7 +94,7 @@ public class MainCamera : MonoBehaviour
                                                  transform.position.z);
             else
             {
-                // Allow the camera to be moved a short distance around the player while locked
+                // Allow the camera to be moved a short distance using the joystick while the camera is locked.
                 transform.position = new Vector3(player.transform.position.x + (1.5f * Input.GetAxis("CamH")),
                                                  player.transform.position.y + (1.5f * Input.GetAxis("CamV")),
                                                  transform.position.z);
