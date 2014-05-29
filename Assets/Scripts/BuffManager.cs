@@ -41,7 +41,7 @@ public class BuffManager : MonoBehaviour
                 b.ApplyBuff();
             }
 
-            nextBuffTime += Time.time + BuffDuration;
+            nextBuffTime = Time.time + BuffDuration;
         }
     }
 
