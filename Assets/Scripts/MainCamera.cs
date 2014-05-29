@@ -10,6 +10,9 @@ public class MainCamera : MonoBehaviour
     float height;
     Vector2 lowerBounds;
     Vector2 upperBounds;
+    bool toggleCam;
+    GameObject player;
+    GameObject background;
 
     // Use this for initialization
     void Start()
@@ -23,13 +26,12 @@ public class MainCamera : MonoBehaviour
         width = height * camera.aspect;
 
         // Get the background to use for the camera bounds
-        GameObject background = GameObject.Find("Background");
+        background = GameObject.Find("Background");
         if (!background)
             Debug.LogError("Background could not be found!");
 
-        // Find the lower and upper bounds of the map
-        lowerBounds = new Vector2(background.renderer.bounds.min.x, background.renderer.bounds.min.y);
-        upperBounds = new Vector2(background.renderer.bounds.max.x, background.renderer.bounds.max.y);
+        player = GameObject.Find("Player");
+        toggleCam = false;
     }
 
     // Update is called once per frame
@@ -62,21 +64,47 @@ public class MainCamera : MonoBehaviour
             Input.mousePosition.y <= EdgeBuffer &&
             Input.mousePosition.y >= 0)
             transform.position += Vector3.down * Time.deltaTime * Speed;
+
+        //camera move via CamH/CamV
+        if (Input.GetAxis("CamH") > 0.2 || Input.GetAxis("CamH") < -0.2)
+            transform.position += Input.GetAxis("CamH") * Vector3.right * Time.deltaTime * Speed * 0.6f;
+
+        if (Input.GetAxis("CamV") > 0.2 || Input.GetAxis("CamV") < -0.2)
+            transform.position += Input.GetAxis("CamV") * Vector3.up * Time.deltaTime * Speed * 0.6f;
     }
 
     void LateUpdate()
     {
-        // Center on player
-        if (Input.GetButton("Jump"))
-        {
-            GameObject Player = GameObject.Find("Player");
+        // Toggle camera
+        if (Input.GetButtonDown("Fire1"))
+            toggleCam = !toggleCam;
 
-            if (Player != null)
-            {
-                Vector3 PlayerPos = Player.transform.position;
-                transform.position = new Vector3(PlayerPos.x, PlayerPos.y, transform.position.z);
-            }
+        // Center on player
+        if (Input.GetButton("Jump") || toggleCam == true)
+        {
+            // If cam joystick is centereed
+            if (Input.GetAxis("CamH") < 0.2 &&
+                Input.GetAxis("CamH") > -0.2 &&
+                Input.GetAxis("CamV") < 0.2 &&
+                Input.GetAxis("CamV") > -0.2)
+
+                // Keep camera centered
+                transform.position = new Vector3(player.transform.position.x,
+                                                 player.transform.position.y,
+                                                 transform.position.z);
+            //else
+            //{
+            //    // Cam lock + camera around ball
+            //    Vector3 PlayerPos = player.transform.position;
+            //    PlayerPos.x = player.transform.position.x + (1.5f * Input.GetAxis("CamH"));
+            //    PlayerPos.y = player.transform.position.y + (1.5f * Input.GetAxis("CamV"));
+            //    transform.position = new Vector3(PlayerPos.x, PlayerPos.y, transform.position.z);
+            //}
         }
+
+        // Find the lower and upper bounds of the map
+        lowerBounds = new Vector2(background.renderer.bounds.min.x, background.renderer.bounds.min.y);
+        upperBounds = new Vector2(background.renderer.bounds.max.x, background.renderer.bounds.max.y);
 
         // Make sure the camera doesn't go further left or right than the size of the map
         if (transform.position.x - width <= lowerBounds.x)
