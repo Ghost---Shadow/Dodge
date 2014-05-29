@@ -92,14 +92,13 @@ public class MainCamera : MonoBehaviour
                 transform.position = new Vector3(player.transform.position.x,
                                                  player.transform.position.y,
                                                  transform.position.z);
-            //else
-            //{
-            //    // Cam lock + camera around ball
-            //    Vector3 PlayerPos = player.transform.position;
-            //    PlayerPos.x = player.transform.position.x + (1.5f * Input.GetAxis("CamH"));
-            //    PlayerPos.y = player.transform.position.y + (1.5f * Input.GetAxis("CamV"));
-            //    transform.position = new Vector3(PlayerPos.x, PlayerPos.y, transform.position.z);
-            //}
+            else
+            {
+                // Allow the camera to be moved a short distance around the player while locked
+                transform.position = new Vector3(player.transform.position.x + (1.5f * Input.GetAxis("CamH")),
+                                                 player.transform.position.y + (1.5f * Input.GetAxis("CamV")),
+                                                 transform.position.z);
+            }
         }
 
         // Find the lower and upper bounds of the map
