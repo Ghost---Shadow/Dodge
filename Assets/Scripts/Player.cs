@@ -45,6 +45,18 @@ public class Player : MonoBehaviour, Buffable
         }
     }
 
+	float Buffable.Size
+	{
+		get
+		{
+			return transform.localScale.magnitude;
+		}
+		set
+		{
+			transform.localScale = new Vector3(value,value,value);
+		}
+	}
+
     // Use this for initialization
     void Start()
     {

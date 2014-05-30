@@ -47,17 +47,28 @@ public class Enemy : MonoBehaviour, Buffable
         }
     }
 
-    float Buffable.Speed
-    {
-        get
-        {
-            return MoveSpeed;
-        }
-        set
-        {
-            MoveSpeed = value;
-        }
-    }
+	float Buffable.Speed
+	{
+		get
+		{
+			return MoveSpeed;
+		}
+		set
+		{
+			MoveSpeed = value;
+		}
+	}
+	float Buffable.Size
+	{
+		get
+		{
+			return transform.localScale.magnitude;
+		}
+		set
+		{
+			transform.localScale = new Vector3(value,value,value);
+		}
+	}
 
     // Use this for initialization
     void Start()

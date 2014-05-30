@@ -12,6 +12,7 @@ public class BuffManager : MonoBehaviour
     Sprite originalSprite;
     Buffable buffable;
     float originalSpeed;
+	float originalSize;
     float originalWanderRadius;
     float nextBuffTime;
 
@@ -21,6 +22,7 @@ public class BuffManager : MonoBehaviour
         buffList = new List<Component>(GetComponents(typeof(Buff)));
         buffable = (Buffable)GetComponent(typeof(Buffable));
         originalSpeed = buffable.Speed;
+		originalSize = 1;
 
         spriteRenderer = (SpriteRenderer)GetComponent(typeof(SpriteRenderer));
         originalSprite = spriteRenderer.sprite;
@@ -48,6 +50,7 @@ public class BuffManager : MonoBehaviour
     void RemoveBuff()
     {
         buffable.Speed = originalSpeed;
+		buffable.Size = originalSize;
         spriteRenderer.sprite = originalSprite;
     }
 }
