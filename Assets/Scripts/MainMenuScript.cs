@@ -26,29 +26,29 @@ public class MainMenuScript : MonoBehaviour
         int h = Screen.height;
 
         // Draw banner
-        GUI.DrawTexture(new Rect(w * .100f,     // Width
-                                 h * .100f,     // Height
-                                 w * .300f,     // Horizontal Position
-                                 h * .300f),    // Vertical Position
+        GUI.DrawTexture(new Rect(w * .380f,     // Horizontal Position
+                                 h * .010f,     // Vertical Position
+                                 w * .200f,     // Width
+                                 h * .200f),    // Height
                                  BannerTexture);
 
         // Create buttons
-        bool PlayButton = GUI.Button(new Rect(w * .100f,    // Width
-                                              h * .333f,    // Height
-                                              w * .105f,    // Horizontal Position
-                                              h * .092f),   // Vertical Position
+        bool PlayButton = GUI.Button(new Rect(w * .250f,    // Horizontal Position
+                                              h * .333f,    // Vertical Position
+                                              w * .105f,    // Width
+                                              h * .092f),   // Height
                                               PlayTexture);
 
-        bool OptionsButton = GUI.Button(new Rect(w * .650f,     // Width
-                                                 h * .500f,     // Height
-                                                 w * .200f,     // Horizontal Position
-                                                 h * .092f),    // Vertical Position
+        bool OptionsButton = GUI.Button(new Rect(w * .250f,     // Horizontal Position
+                                                 h * .500f,     // Vertical Position
+                                                 w * .200f,     // Width
+                                                 h * .092f),    // Height
                                                  OptionsTexture);
 
-        bool QuitButton = GUI.Button(new Rect(w * .350f,    // Width
-                                              h * .300f,    // Height
-                                              w * .200f,    // Horizontal Position
-                                              h * .092f),   // Vertical Position
+        bool QuitButton = GUI.Button(new Rect(w * .250f,    // Horizontal Position
+                                              h * .600f,    // Vertical Position
+                                              w * .100f,    // Width
+                                              h * .100f),   // Height
                                               QuitTexture);
 
         // Handle button presses
