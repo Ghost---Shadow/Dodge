@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : Buffable
+public class Player : MonoBehaviour, Buffable
 {
     public float MoveSpeed = 8f;
     Vector2 target;
@@ -9,7 +9,7 @@ public class Player : Buffable
     Vector2 upperBounds;
     Vector2 lowerBounds;
 
-    public override Vector2 Destination
+    Vector2 Buffable.Destination
     {
         get
         {
@@ -21,7 +21,7 @@ public class Player : Buffable
         }
     }
 
-    public override Sprite StartSprite
+    Sprite Buffable.StartSprite
     {
         get
         {
@@ -33,7 +33,7 @@ public class Player : Buffable
         }
     }
 
-    public override float Speed
+    float Buffable.Speed
     {
         get
         {

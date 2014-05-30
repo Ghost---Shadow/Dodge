@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : Buffable
+public class Enemy : MonoBehaviour, Buffable
 {
     public float MoveSpeed = 4;             // Move speed
     public float WaitTime = 3;          // Time to wait before changing direction
@@ -23,7 +23,7 @@ public class Enemy : Buffable
     Vector2 lowerBounds;
     Vector2 upperBounds;
 
-    public override Vector2 Destination
+    Vector2 Buffable.Destination
     {
         get
         {
@@ -35,7 +35,7 @@ public class Enemy : Buffable
         }
     }
 
-    public override Sprite StartSprite
+    Sprite Buffable.StartSprite
     {
         get
         {
@@ -47,7 +47,7 @@ public class Enemy : Buffable
         }
     }
 
-    public override float Speed
+    float Buffable.Speed
     {
         get
         {
