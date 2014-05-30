@@ -18,24 +18,38 @@ public class MainMenuScript : MonoBehaviour
             Debug.LogError("Button texture is missing!");
 
         currentGUIMethod = MainMenu;
-
-        //banner.transform.position = Vector3.zero;
-        //banner.transform.localScale = Vector3.zero;
-        //banner.pixelInset = new Rect(50, 50, 100, 100);
     }
 
     void MainMenu()
     {
-        int width = Screen.width;
-        int height = Screen.height;
+        int w = Screen.width;
+        int h = Screen.height;
 
         // Draw banner
-        GUI.DrawTexture(new Rect(width * .1f, height * .1f, 300, 100), BannerTexture);
+        GUI.DrawTexture(new Rect(w * .100f,     // Width
+                                 h * .100f,     // Height
+                                 w * .300f,     // Horizontal Position
+                                 h * .300f),    // Vertical Position
+                                 BannerTexture);
 
         // Create buttons
-        bool PlayButton = GUI.Button(new Rect(width * .1f, height / 3, width * .105f, height * .092f), PlayTexture);
-        bool OptionsButton = GUI.Button(new Rect(width * .65f, height * .5f, width * .2f, height * .092f), OptionsTexture);
-        bool QuitButton = GUI.Button(new Rect(width, height, 200, 100), QuitTexture);
+        bool PlayButton = GUI.Button(new Rect(w * .100f,    // Width
+                                              h * .333f,    // Height
+                                              w * .105f,    // Horizontal Position
+                                              h * .092f),   // Vertical Position
+                                              PlayTexture);
+
+        bool OptionsButton = GUI.Button(new Rect(w * .650f,     // Width
+                                                 h * .500f,     // Height
+                                                 w * .200f,     // Horizontal Position
+                                                 h * .092f),    // Vertical Position
+                                                 OptionsTexture);
+
+        bool QuitButton = GUI.Button(new Rect(w * .350f,    // Width
+                                              h * .300f,    // Height
+                                              w * .200f,    // Horizontal Position
+                                              h * .092f),   // Vertical Position
+                                              QuitTexture);
 
         // Handle button presses
         if (PlayButton)
@@ -55,7 +69,7 @@ public class MainMenuScript : MonoBehaviour
 
     void Options()
     {
-
+        Application.LoadLevel(0);
     }
 
     void Quit()
