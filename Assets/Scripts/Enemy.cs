@@ -80,25 +80,25 @@ public class Enemy : Buffable
 
     void Update()
     {
-        SetDestination();
+        // If the enemy hits a level boundary immediately move to a new destination
+        if (transform.position.x == lowerBounds.x || transform.position.x == upperBounds.x ||
+            transform.position.y == lowerBounds.y || transform.position.y == upperBounds.y)
+            SetDestination(true);
+        else
+            SetDestination();
+
         transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
     }
 
-    void SetDestination()
+    void SetDestination(bool immediate = false)
     {
         // Move to a random location every X seconds
-        if (Time.time >= nextMoveTime)
+        if (Time.time >= nextMoveTime || immediate)
         {
-            nextMoveTime += WaitTime;
+            nextMoveTime = Time.time + WaitTime;
             float x = Mathf.Clamp(Random.Range(minX, maxX), lowerBounds.x, upperBounds.x);
             float y = Mathf.Clamp(Random.Range(minY, maxY), lowerBounds.y, upperBounds.y);
             destination = new Vector2(x, y);
         }
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Enemy")
-            SetDestination();
     }
 }
