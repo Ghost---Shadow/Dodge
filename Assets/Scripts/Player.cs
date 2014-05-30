@@ -88,15 +88,6 @@ public class Player : Buffable
             transform.position = new Vector2(transform.position.x, lowerBounds.y);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Enemy" && !isSafe)
-        {
-            Dead();
-            Application.LoadLevel(Application.loadedLevel);
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "SafeZone")
@@ -108,6 +99,12 @@ public class Player : Buffable
 
         if (other.gameObject.name == "SafeZone Top")
         {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+        if (other.gameObject.tag == "Enemy" && !isSafe)
+        {
+            Dead();
             Application.LoadLevel(Application.loadedLevel);
         }
     }
