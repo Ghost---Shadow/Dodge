@@ -4,10 +4,20 @@ using System.Collections;
 public class Player : MonoBehaviour, Buffable
 {
     public float MoveSpeed = 8f;
-    Vector2 target;
-    bool isSafe = true;
-    Vector2 upperBounds;
-    Vector2 lowerBounds;
+	public float buffDecayTime = 5f;
+    
+	private Vector2 target;
+	private bool isSafe = true;
+	private Vector2 upperBounds;
+	private Vector2 lowerBounds;
+	private Buffable buffable;
+	private DoubleSpeedBuff doubleSpeedBuff;
+	private HalfSpeedBuff halfSpeedBuff;
+	private float originalSpeed;
+	private float originalSize;
+	private Pickup.PickupType currentPickup = Pickup.PickupType.none;
+	private Sprite originalSprite;
+	private SpriteRenderer spriteRenderer;
 
     Vector2 Buffable.Destination
     {
@@ -68,6 +78,15 @@ public class Player : MonoBehaviour, Buffable
 
         upperBounds = background.renderer.bounds.max;
         lowerBounds = background.renderer.bounds.min;
+
+		originalSpeed = MoveSpeed;
+		originalSize = 2f;
+		spriteRenderer = this.GetComponent<SpriteRenderer>();
+		originalSprite = spriteRenderer.sprite;
+
+		buffable = (Buffable)GetComponent(typeof(Buffable));
+		doubleSpeedBuff = this.gameObject.GetComponent<DoubleSpeedBuff>();
+		halfSpeedBuff = this.gameObject.GetComponent<HalfSpeedBuff>();
     }
 
     // Update is called once per frame
@@ -119,7 +138,30 @@ public class Player : MonoBehaviour, Buffable
             Dead();
             Application.LoadLevel(Application.loadedLevel);
         }
+		if(other.gameObject.tag == "Pickup"){
+			Debug.Log(other.gameObject.GetComponent<Pickup>().pickup);
+			if(other.gameObject.GetComponent<Pickup>().pickup == Pickup.PickupType.speedUp 
+			   && currentPickup!=Pickup.PickupType.speedUp){
+				doubleSpeedBuff.ApplyBuff();
+				currentPickup = Pickup.PickupType.speedUp;
+			}
+			if(other.gameObject.GetComponent<Pickup>().pickup == Pickup.PickupType.speedDown
+			   && currentPickup!=Pickup.PickupType.speedDown){
+				halfSpeedBuff.ApplyBuff();
+				currentPickup = Pickup.PickupType.speedDown;
+			}
+			Invoke("RemoveBuffs",buffDecayTime);
+			Destroy(other.gameObject);
+		}
     }
+	void RemoveBuffs()
+	{
+		buffable.Speed = originalSpeed;
+		buffable.Size = originalSize;
+		currentPickup = Pickup.PickupType.none;
+		spriteRenderer.sprite = originalSprite;
+		Debug.Log("Buffs removed");
+	}
 
     void OnTriggerExit2D(Collider2D other)
     {
