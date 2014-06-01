@@ -1,0 +1,6 @@
+- Add more levels
+	- Campaign mode
+		- Hand made simple mazes for each level
+		- Story?
+	- Free play mode
+		- Procedurally generated levels
