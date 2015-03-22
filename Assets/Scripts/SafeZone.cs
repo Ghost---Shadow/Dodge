@@ -6,6 +6,7 @@ using System.Collections;
 public class SafeZone : MonoBehaviour
 {
     public Sprite EnteredSprite;
+	//public bool isFinal = false;
 
     Sprite defaultSprite;
     SpriteRenderer spriteRenderer;

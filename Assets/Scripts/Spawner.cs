@@ -5,16 +5,28 @@ public class Spawner : MonoBehaviour
 {
     public GameObject Mob;
     public float SpawnTimer = 3.0f;
-    public int SpawnCount = 5;
+    public static int SpawnCount = 10;
     public bool Continuous = false;
 
     private float NextSpawnTime;
-    private int spawnedMobs;
+	private static int baseSpawnCount;
+    public int spawnedMobs;
+
+	private Transform enemyHolder;
 
     // Use this for initialization
     void Start()
     {
+		baseSpawnCount = SpawnCount;
+		enemyHolder = GameObject.Find ("EnemyHolder").transform;
     }
+	public static void IncrementSpawnCount(int factor){
+		SpawnCount += factor;
+	}
+
+	public static void DecrementSpawnCount(){
+		baseSpawnCount -= 5;
+	}
 
     // Update is called once per frame
     void Update()
@@ -25,8 +37,9 @@ public class Spawner : MonoBehaviour
             {
                 spawnedMobs++;
                 NextSpawnTime += SpawnTimer;
-                Instantiate(Mob, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            }
+                GameObject instance = Instantiate(Mob, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+				instance.transform.parent = enemyHolder;
+			}
         }
         else if (spawnedMobs < SpawnCount)
             for (spawnedMobs = 0; spawnedMobs < SpawnCount; spawnedMobs++)

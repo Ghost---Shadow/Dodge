@@ -5,6 +5,7 @@ public class Player : MonoBehaviour, Buffable
 {
     public float MoveSpeed = 8f;
 	public float buffDecayTime = 5f;
+	public GameObject soundManager;
     
 	private Vector2 target;
 	private bool isSafe = true;
@@ -18,6 +19,9 @@ public class Player : MonoBehaviour, Buffable
 	private Pickup.PickupType currentPickup = Pickup.PickupType.none;
 	private Sprite originalSprite;
 	private SpriteRenderer spriteRenderer;
+	private Vector3 lastSafeZone;
+	private Vector3 start;
+	private Sounds soundEffect;
 
     Vector2 Buffable.Destination
     {
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour, Buffable
     void Start()
     {
         target = transform.position;
+		start = transform.position;
 
         GameObject background = GameObject.Find("Background");
         if (!background)
@@ -80,9 +85,11 @@ public class Player : MonoBehaviour, Buffable
         lowerBounds = background.renderer.bounds.min;
 
 		originalSpeed = MoveSpeed;
-		originalSize = 2f;
+		originalSize = transform.localScale.x;
 		spriteRenderer = this.GetComponent<SpriteRenderer>();
 		originalSprite = spriteRenderer.sprite;
+
+		soundEffect = soundManager.GetComponent<Sounds> ();
 
 		buffable = (Buffable)GetComponent(typeof(Buffable));
 		doubleSpeedBuff = this.gameObject.GetComponent<DoubleSpeedBuff>();
@@ -92,8 +99,11 @@ public class Player : MonoBehaviour, Buffable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire2"))
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetButton("Fire1") || Input.touchCount > 0)
+			if(Application.platform == RuntimePlatform.Android)
+				target = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+			else
+            	target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         else
         {
             if (Input.GetAxis("Vertical") >= 0.2 || Input.GetAxis("Vertical") <= -0.2)
@@ -126,19 +136,24 @@ public class Player : MonoBehaviour, Buffable
             SafeZone safeZone = (SafeZone)other.gameObject.GetComponent(typeof(SafeZone));
             safeZone.Entered();
             isSafe = true;
+			lastSafeZone = other.transform.position;
+			soundEffect.enterSafeZone();
         }
 
         if (other.gameObject.name == "SafeZone Top")
         {
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
+			soundEffect.enterSafeZone();
+			Success();
         }
 
         if (other.gameObject.tag == "Enemy" && !isSafe)
         {
             Dead();
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
         }
 		if(other.gameObject.tag == "Pickup"){
+			soundEffect.pickup();
 			Debug.Log(other.gameObject.GetComponent<Pickup>().pickup);
 			if(other.gameObject.GetComponent<Pickup>().pickup == Pickup.PickupType.speedUp 
 			   && currentPickup!=Pickup.PickupType.speedUp){
@@ -154,6 +169,7 @@ public class Player : MonoBehaviour, Buffable
 			Destroy(other.gameObject);
 		}
     }
+
 	void RemoveBuffs()
 	{
 		buffable.Speed = originalSpeed;
@@ -172,9 +188,19 @@ public class Player : MonoBehaviour, Buffable
             isSafe = false;
         }
     }
-
+	void Success(){
+		transform.position = start;
+		target = start;
+		SuccessScript.IncrementSuccess ();
+		RemoveBuffs ();
+		soundEffect.levelUp ();
+	}
     void Dead()
     {
+		transform.position = lastSafeZone;
+		target = lastSafeZone;
         DeathScript.IncrementDeath();
+		RemoveBuffs ();
+		soundEffect.death ();
     }
 }

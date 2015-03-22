@@ -36,7 +36,17 @@ public class MainCamera : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {/*
+		if (Screen.orientation == ScreenOrientation.Portrait) {
+			transform.position = new Vector3(0,0,20);
+		} else {
+			transform.position = new Vector3(0,0,-10);
+		}*/
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Debug.Log("Going to main menu");
+			Application.LoadLevel (0);
+		}
+
         // Check if on the right edge
         if (Input.mousePosition.x >= Screen.width - EdgeBuffer &&
             Input.mousePosition.x <= Screen.width &&
@@ -76,8 +86,8 @@ public class MainCamera : MonoBehaviour
     void LateUpdate()
     {
         // Toggle camera
-        if (Input.GetButtonDown("Fire1"))
-            toggleCam = !toggleCam;
+        //if (Input.GetButtonDown("Fire1"))
+        //    toggleCam = !toggleCam;
 
         // Center on player
         if (Input.GetButton("Jump") || toggleCam == true)

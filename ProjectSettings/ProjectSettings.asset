@@ -10,7 +10,7 @@ PlayerSettings:
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: AND15792AC
   productName: Dodge
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -25,14 +25,14 @@ PlayerSettings:
   m_MobileMTRendering: 0
   m_UseDX11: 0
   iosShowActivityIndicatorOnLoading: -1
-  androidShowActivityIndicatorOnLoading: -1
+  androidShowActivityIndicatorOnLoading: 2
   displayResolutionDialog: 1
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 1
   allowedAutorotateToLandscapeRight: 1
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1
-  use32BitDisplayBuffer: 1
+  use32BitDisplayBuffer: 0
   use24BitDepthBuffer: 1
   defaultIsFullScreen: 1
   defaultIsNativeResolution: 1
@@ -44,7 +44,7 @@ PlayerSettings:
   usePlayerLog: 1
   stripPhysics: 0
   forceSingleInstance: 0
-  resizableWindow: 0
+  resizableWindow: 1
   useMacAppStoreValidation: 0
   gpuSkinning: 0
   xboxPIXTextureCapture: 0
@@ -73,9 +73,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  iPhoneBundleIdentifier: com.Company.ProductName
-  metroEnableIndependentInputSource: 0
-  metroEnableLowLatencyPresentationAPI: 0
+  iPhoneBundleIdentifier: com.AND15792AC.Dodge
   productGUID: ee1e0faafbd3cb345a3789514f22da07
   iPhoneBundleVersion: 1.0
   AndroidBundleVersionCode: 1
@@ -109,7 +107,11 @@ PlayerSettings:
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 179e00826228f41418198d28373ac05e, type: 3}
+      m_Size: 128
   m_BuildTargetBatching: []
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
@@ -170,7 +172,6 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   metroCapabilities: {}
-  metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 
